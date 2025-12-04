@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Generátor Barev</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            document.querySelectorAll('.color-btn').forEach(button => {
+                button.onclick = () => {
+                    document.querySelector('#display').style.backgroundColor = button.dataset.color;
+                    document.querySelector('#color-code').textContent = button.dataset.color.toUpperCase();
+                };
+            });
+
+            document.querySelector('#color-select').onchange = function () {
+                document.querySelector('#display').style.backgroundColor = this.value;
+                document.querySelector('#color-code').textContent = this.value.toUpperCase();
+            };
+
+            document.querySelector('#random-btn').onclick = () => {
+                const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
+                document.querySelector('#display').style.backgroundColor = randomColor;
+                document.querySelector('#color-code').textContent = randomColor.toUpperCase();
+            };
+
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h1 id="display">Generátor Barev</h1>
+        <p id="color-code">WHITE</p>
+
+        <div class="section">
+            <h2>Tlačítka barev</h2>
+            <div class="button-group">
+                <button class="color-btn" data-color="red" style="background: red; color: white;">Červená</button>
+                <button class="color-btn" data-color="blue" style="background: blue; color: white;">Modrá</button>
+                <button class="color-btn" data-color="green" style="background: green; color: white;">Zelená</button>
+                <button class="color-btn" data-color="yellow" style="background: yellow;">Žlutá</button>
+                <button class="color-btn" data-color="orange" style="background: orange;">Oranžová</button>
+                <button class="color-btn" data-color="purple" style="background: purple; color: white;">Fialová</button>
+                <button class="color-btn" data-color="pink" style="background: pink;">Růžová</button>
+                <button class="color-btn" data-color="cyan" style="background: cyan;">Tyrkysová</button>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Výběr ze seznamu</h2>
+            <select id="color-select">
+                <option value="white">Bílá</option>
+                <option value="black">Černá</option>
+                <option value="gray">Šedá</option>
+                <option value="brown">Hnědá</option>
+                <option value="lime">Limetková</option>
+                <option value="navy">Námořnická</option>
+                <option value="teal">Šedozelená</option>
+            </select>
+        </div>
+
+        <div class="section">
+            <h2>Náhodná barva</h2>
+            <button id="random-btn" class="special-btn">🎲 Generovat náhodnou barvu</button>
+        </div>
+    </div>
+</body>
+
+</html>
